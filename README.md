@@ -3,6 +3,11 @@ Simple Authentication Filter for WebApi that supports Azure AD B2C
 
 ## Usage
 
+### Install nuget package
+```nuget
+PM>  Install-Package Stardust.Aadb2c.AuthenticationFilter 
+```
+
 ### add filter
 In WebApiConfig.cs add 
 ```CS
