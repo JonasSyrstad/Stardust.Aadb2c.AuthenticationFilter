@@ -1,14 +1,14 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Stardust.Aadb2c.AuthenticationFilter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Azure AD B2C authentication filter")]
+[assembly: AssemblyDescription("A simple authentication filter for WebApi that supports azure ad b2c")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Stardust")]
 [assembly: AssemblyProduct("Stardust.Aadb2c.AuthenticationFilter")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

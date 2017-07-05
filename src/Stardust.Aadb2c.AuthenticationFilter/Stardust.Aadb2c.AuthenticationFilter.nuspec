@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>Stardust.Aadb2c.AuthenticationFilter</id>
+    <version>1.0.0.0-pre2</version>
+    <title>Azure AD B2C authentication filter</title>
+    <authors>Stardust</authors>
+    <description>A simple authentication filter for WebApi that supports azure ad b2c</description>
+    <summary>Add the line
+ config.Filters.Add(new OAuthAuthenticationFilter());
+ to WebApiConfig.Register</summary>
+    <licenseUrl>http://stardustframework.com/license</licenseUrl>
+    <projectUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</projectUrl>
+    <iconUrl>http://stardustframework.wdfiles.com/local--files/blog%3A_start/logo_smal.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <releaseNotes>initial release</releaseNotes>
+    <copyright>Copyright ©  2017</copyright>
+    <frameworkAssemblies />
+    <dependencies>
+      <group>
+        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+        <dependency id="Microsoft.IdentityModel.Protocol.Extensions" version="1.0.3.308261200" />
+        <dependency id="Newtonsoft.Json" version="6.0.4" />
+        <dependency id="SharpZipLib" version="0.86.0" />
+        <dependency id="Stardust.Nucleus" version="3.0.1.0" />
+        <dependency id="System.IdentityModel.Tokens.Jwt" version="4.0.3.308261200" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\jonsyr\Source\Repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.AuthenticationFilter\bin\Release\Stardust.Aadb2c.AuthenticationFilter.dll" target="lib\net45" />
+    <file src="C:\Users\jonsyr\Source\Repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.AuthenticationFilter\bin\Release\Stardust.Aadb2c.AuthenticationFilter.pdb" target="lib\net45" />
+  </files>
+</package>

@@ -4,13 +4,12 @@ using System.IdentityModel.Tokens;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Protocols;
-using Microsoft.Owin.Security.Jwt;
 using Newtonsoft.Json;
 using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
 {
-    public class OpenIdConnectCachingSecurityTokenProvider : IIssuerSecurityTokenProvider
+    public class OpenIdConnectCachingSecurityTokenProvider 
     {
         public ConfigurationManager<OpenIdConnectConfiguration> _configManager;
         private string _issuer;
