@@ -61,3 +61,68 @@ public static void Register(HttpConfiguration config)
         BundleConfig.RegisterBundles(BundleTable.Bundles);
     }
 ```
+
+# Swagger UI support for OAuth2 implicit grant flow
+
+## Usage
+
+### Install nuget package
+```nuget
+PM>  Install-Package Swashbuckle
+PM>  Install-Package Stardust.Aadb2c.Swagger
+```
+> note: Install the Swashbuckle package first, this ensures that the swaggerconfig is crated properly
+
+### enable oauth support
+
+In App_Start/SwaggerConfig.cs add the following
+
+```CS
+    GlobalConfiguration.Configuration
+        .EnableSwagger(c =>
+            {
+                c.EnableAzureAdB2cOAuth2(
+                                            tenantId, true,
+                                            new ScopeDescription
+                                            {
+                                                Description = "Allow the service to act on behalf of the user",
+                                                ScopeName =  scopeName //usually in the format: https://tenantName.onmicrosoft.com/appId/scopeName (https://stardustfx123.onmicrosoft.com/739B91C4-26A7-4D6C-9344-5FF77A87C09A/user_impersonation)
+                                            });
+            }).EnableSwaggerUi(c =>
+                {
+                    c.EnableAzureAdB2cOAuth2(swaggerUiClientId, "B2C_1A_SignIn");
+                    
+                }); 
+```
+
+#### alternative
+you can keep all the parameters passed to the swagger in the config file.
+
+
+```CS
+    GlobalConfiguration.Configuration
+        .EnableSwagger(c =>
+            {
+                c.EnableAzureAdB2cOAuth2();
+            }).EnableSwaggerUi(c =>
+                {
+                    c.EnableAzureAdB2cOAuth2();
+                    
+                }); 
+```
+
+```XML
+<appSettings>
+    <!-- mandatory -->
+    <add key ="aadTenantId" value="tenantId" /><!-- this is a guid -->
+    <!-- scopes are separated by | and name and description is separated by ; -->
+    <add key="aadScopes" value="email;send email|https://stardustfx123.onmicrosoft.com/739B91C4-26A7-4D6C-9344-5FF77A87C09A/user_impersonation;Allow the service to act on behalf of the user" />
+    <add key="aadFlowDescription" value="OAuth2 Implicit Grant" />
+    <add key ="aadPolicy" value="B2C_1A_SignIn" />
+    <add key ="aadUseV2Endpoint" value="true" />
+    <add key ="swaggerClientId" value="swaggerAppId" /><!-- this is a guid -->
+    <add key ="swaggerClientSecret" value="secret" /><!-- not recommended to use this -->
+    <add key ="swaggerAppName" value="Swagger UI" />
+</appSettings>
+
+```
