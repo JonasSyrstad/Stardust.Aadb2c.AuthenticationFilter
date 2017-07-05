@@ -3,7 +3,7 @@
   <metadata>
     <id>Stardust.Aadb2c.AuthenticationFilter</id>
     <version>1.0.0.0-pre2</version>
-    <title>Azure AD B2C authentication filter</title>
+    <title>Stardust.Aadb2c.AuthenticationFilter</title>
     <authors>Stardust</authors>
     <description>A simple authentication filter for WebApi that supports azure ad b2c</description>
     <summary>Add the line
