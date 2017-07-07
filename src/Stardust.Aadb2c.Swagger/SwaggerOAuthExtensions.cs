@@ -24,7 +24,7 @@ namespace Stardust.Aadb2c.Swagger
                 .Description(description)
                 .Flow("implicit")
                 .AuthorizationUrl(AuthorizationUrl(tenantId, useV2Endpoint))
-                .TokenUrl(TokenUrl(tenantId, useV2Endpoint))
+                //.TokenUrl(TokenUrl(tenantId, useV2Endpoint))
                 .Scopes(s =>
                 {
                     for (int i = 0; i < DefaultScopes.Length; i++)
