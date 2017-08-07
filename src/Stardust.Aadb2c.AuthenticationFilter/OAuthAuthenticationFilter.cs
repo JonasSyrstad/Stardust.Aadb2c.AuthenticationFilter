@@ -74,7 +74,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 var securityToken = handler.ValidateToken(accessToken, new TokenValidationParameters
                 {
                     ValidAudience = Resource,
-                    ValidIssuer = B2CGlobalConfiguration.ValidIssuer,
+                    ValidIssuers = new []{ B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer +"/"},
+                    //ValidIssuer = B2CGlobalConfiguration.ValidIssuer,
                     IssuerSigningTokens = settings.SecurityTokens
 
                 }, out validatedToken);
