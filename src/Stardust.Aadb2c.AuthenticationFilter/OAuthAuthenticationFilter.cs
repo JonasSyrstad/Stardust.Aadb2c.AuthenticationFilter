@@ -69,8 +69,11 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             try
             {
                 SecurityToken validatedToken;
-                var settings =
-                    Settings;
+                var decodedToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+                var isUserToken = decodedToken != null && decodedToken.Claims.Any(claim => claim.Type == "upn");
+                Logging.DebugMessage($"Validating {(isUserToken?"User":"ServicePrincipal")}");
+                var settings = isUserToken ? Settings : Settings4App;
+               
                 var securityToken = handler.ValidateToken(accessToken, new TokenValidationParameters
                 {
                     ValidAudience = Resource,
@@ -92,6 +95,9 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 
         private static OpenIdConnectCachingSecurityTokenProvider Settings { get; } = new OpenIdConnectCachingSecurityTokenProvider(
             MetadataEndpoint);
+
+        private static OpenIdConnectCachingSecurityTokenProvider Settings4App { get; } = new OpenIdConnectCachingSecurityTokenProvider($"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration");
+
 
         private static string MetadataEndpoint
         {

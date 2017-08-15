@@ -9,7 +9,7 @@ using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
 {
-    public class OpenIdConnectCachingSecurityTokenProvider 
+    public class OpenIdConnectCachingSecurityTokenProvider
     {
         public ConfigurationManager<OpenIdConnectConfiguration> _configManager;
         private string _issuer;
@@ -80,7 +80,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 var config = Task.Run(_configManager.GetConfigurationAsync).Result;
                 _issuer = config.Issuer;
                 _tokens = config.SigningTokens;
-                Logging.DebugMessage(JsonConvert.SerializeObject(config));
+                if (ConfigurationManagerHelper.GetValueOnKey("stardust.doLogging", false))
+                    Logging.DebugMessage(JsonConvert.SerializeObject(config));
             }
             catch (Exception ex)
             {
