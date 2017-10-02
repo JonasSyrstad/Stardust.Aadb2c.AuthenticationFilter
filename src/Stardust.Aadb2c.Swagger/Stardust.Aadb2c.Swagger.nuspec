@@ -30,7 +30,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\jonsyr\Source\Repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.Swagger\bin\Release\Stardust.Aadb2c.Swagger.dll" target="lib\net45" />
-    <file src="C:\Users\jonsyr\Source\Repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.Swagger\bin\Release\Stardust.Aadb2c.Swagger.pdb" target="lib\net45" />
+    <file src="C:\source\repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.Swagger\bin\Release\Stardust.Aadb2c.Swagger.dll" target="lib\net45" />
+    <file src="C:\source\repos\Stardust.Aadb2c.AuthenticationFilter\src\Stardust.Aadb2c.Swagger\bin\Release\Stardust.Aadb2c.Swagger.pdb" target="lib\net45" />
   </files>
 </package>

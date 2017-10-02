@@ -52,6 +52,18 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             }
         }
 
+        public static string ValidIssuerV1
+        {
+            get
+            {
+                return ConfigurationManagerHelper.GetValueOnKey("issuerHostName_v1");
+            }
+            set
+            {
+                ConfigurationManagerHelper.SetValueOnKey("issuerHostName_v1", value, true);
+            }
+        }
+
         public static bool UseSupportCode
         {
             get
@@ -61,6 +73,18 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             set
             {
                 ConfigurationManagerHelper.SetValueOnKey("stardust.useSupportCode", value.ToString(), true);
+            }
+        }
+
+        public static string AudienceV1
+        {
+            get
+            {
+                return ConfigurationManagerHelper.GetValueOnKey("audience_v1");
+            }
+            set
+            {
+                ConfigurationManagerHelper.SetValueOnKey("audience_v1", value, true);
             }
         }
     }

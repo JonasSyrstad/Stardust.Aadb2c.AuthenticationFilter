@@ -62,8 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdalTokenValidationHelper.cs" />
     <Compile Include="B2CGlobalConfiguration.cs" />
     <Compile Include="OAuthAuthenticationFilter.cs" />
+    <Compile Include="OAuthV1AuthenticationFilter.cs" />
     <Compile Include="OpenIdConnectCachingSecurityTokenProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,7 +73,9 @@
     <None Include="app.config" />
     <None Include="nugetdeploy.config" />
     <None Include="packages.config" />
-    <None Include="Stardust.Aadb2c.AuthenticationFilter.nuspec" />
+    <None Include="Stardust.Aadb2c.AuthenticationFilter.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

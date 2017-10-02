@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
@@ -18,7 +15,7 @@ using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
 {
-    public class OAuthAuthenticationFilter : IAuthenticationFilter
+    public class OAuthAuthenticationFilter : OAuthV1AuthenticationFilter
     {
         private static void AuthorizeRequest(HttpActionContext actionContext, HttpContext context)
         {
@@ -71,13 +68,13 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 SecurityToken validatedToken;
                 var decodedToken = handler.ReadToken(accessToken) as JwtSecurityToken;
                 var isUserToken = decodedToken != null && decodedToken.Claims.Any(claim => claim.Type == "upn");
-                Logging.DebugMessage($"Validating {(isUserToken?"User":"ServicePrincipal")}");
+                Logging.DebugMessage($"Validating {(isUserToken ? "User" : "ServicePrincipal")}");
                 var settings = isUserToken ? Settings : Settings4App;
-               
+
                 var securityToken = handler.ValidateToken(accessToken, new TokenValidationParameters
                 {
                     ValidAudience = Resource,
-                    ValidIssuers = new []{ B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer +"/"},
+                    ValidIssuers = new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" },
                     //ValidIssuer = B2CGlobalConfiguration.ValidIssuer,
                     IssuerSigningTokens = settings.SecurityTokens
 
@@ -129,16 +126,28 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         /// <returns>A Task that will perform authentication.</returns>
         /// <param name="context">The authentication context.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
-        public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
+        public override Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            try
+            var auth = context?.Request.Headers.GetValues("Authorization").First();
+            var credentials = AuthenticationHeaderValue.Parse(auth);
+            var jwt = new JwtSecurityToken(credentials.Parameter);
+            if(jwt.Claims.SingleOrDefault(c => c.Type == "userId")!=null)
             {
-                AuthorizeRequest(context.ActionContext, HttpContext.Current);
-            }
-            catch (Exception ex)
-            {
-                context.ErrorResult = new StatusCodeResult(HttpStatusCode.Unauthorized, context.Request);
+                Logging.DebugMessage("Validating user token");
+                try
+                {
+                    AuthorizeRequest(context.ActionContext, HttpContext.Current);
+                }
+                catch (Exception ex)
+                {
+                    context.ErrorResult = new StatusCodeResult(HttpStatusCode.Unauthorized, context.Request);
 
+                }
+            }
+            else
+            {
+                Logging.DebugMessage("Validating client token");
+                return base.AuthenticateAsync(context, cancellationToken);
             }
             return Task.FromResult(0);
         }

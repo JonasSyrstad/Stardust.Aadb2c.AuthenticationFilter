@@ -63,7 +63,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 _synclock.EnterReadLock();
                 try
                 {
-                    return _tokens;
+                    return _tokens;     
                 }
                 finally
                 {
