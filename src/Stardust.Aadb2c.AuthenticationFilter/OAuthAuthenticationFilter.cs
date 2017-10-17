@@ -128,7 +128,17 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
         public override Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            var auth = context?.Request.Headers.GetValues("Authorization").First();
+            if(!context.Request.Headers.Contains("Authorization"))
+            {
+                HttpContext.Current?.Response.AddHeader("x-auth-state", "missing_token");
+                return Task.FromResult(0);
+            }
+            var auth = context?.Request?.Headers?.GetValues("Authorization")?.FirstOrDefault();
+            if (auth == null)
+            {
+                HttpContext.Current?.Response.AddHeader("x-auth-state", "missing_token");
+                return Task.FromResult(0);
+            }
             var credentials = AuthenticationHeaderValue.Parse(auth);
             var jwt = new JwtSecurityToken(credentials.Parameter);
             if(jwt.Claims.SingleOrDefault(c => c.Type == "userId")!=null)
