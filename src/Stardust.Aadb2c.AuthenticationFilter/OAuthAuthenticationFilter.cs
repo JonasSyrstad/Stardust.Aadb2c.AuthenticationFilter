@@ -56,7 +56,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             }
         }
 
-        public static void ValidateToken(string accessToken)
+        public static ClaimsPrincipal ValidateToken(string accessToken)
         {
             var handler = new JwtSecurityTokenHandler
             {
@@ -82,6 +82,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 var principal = new ClaimsPrincipal(securityToken);
                 Thread.CurrentPrincipal = principal;
                 HttpContext.Current.User = principal;
+                return principal;
             }
             catch (Exception ex)
             {

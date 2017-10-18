@@ -16,13 +16,13 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 {
     public class AdalTokenValidationHelper
     {
-        public static void ValidateToken(string accessToken)
+        public static ClaimsPrincipal ValidateToken(string accessToken)
         {
             var handler = new JwtSecurityTokenHandler();
             handler.Configuration = new SecurityTokenHandlerConfiguration { CertificateValidationMode = X509CertificateValidationMode.None };
             var audience = B2CGlobalConfiguration.AudienceV1;
             if (!audience.StartsWith("https://")) audience = string.Format("https://{0}/", audience);
-
+           // Logging.DebugMessage($"Vaidating token: {audience} {B2CGlobalConfiguration.ValidIssuerV1} {B2CGlobalConfiguration.AadTenant}");
             var validationParameters = new TokenValidationParameters()
             {
                 ValidAudience = audience,
@@ -35,13 +35,15 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 var securityToken = handler.ValidateToken(accessToken, validationParameters, out validatedToken);
 
                 ((ClaimsIdentity)securityToken.Identity).AddClaim(new Claim("token", accessToken));
-
+               // Logging.DebugMessage($"Token is validated");
                 var principal = new ClaimsPrincipal(securityToken);
 
                 var identity = principal.Identity as ClaimsIdentity;
                 //Logging.DebugMessage($"User: {Resolver.Activate<IIdentityLookup>().GetUserName(identity)} validated");
                 Thread.CurrentPrincipal = principal;
                 HttpContext.Current.User = principal;
+                return principal;
+               // Logging.DebugMessage("Principal set on http context")
             }
             catch (Exception ex)
             {
