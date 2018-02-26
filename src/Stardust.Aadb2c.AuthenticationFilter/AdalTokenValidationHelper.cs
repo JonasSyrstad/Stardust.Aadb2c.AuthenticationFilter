@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
 using System.Threading;
+using System.Timers;
 using System.Web;
 using System.Xml;
 using Stardust.Particles;
@@ -16,13 +17,13 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 {
     public class AdalTokenValidationHelper
     {
+
         public static ClaimsPrincipal ValidateToken(string accessToken)
         {
             var handler = new JwtSecurityTokenHandler();
-            handler.Configuration = new SecurityTokenHandlerConfiguration { CertificateValidationMode = X509CertificateValidationMode.None };
+            handler.Configuration = new SecurityTokenHandlerConfiguration { /*CertificateValidationMode = X509CertificateValidationMode.None*/ };
             var audience = B2CGlobalConfiguration.AudienceV1;
             if (!audience.StartsWith("https://")) audience = string.Format("https://{0}/", audience);
-           // Logging.DebugMessage($"Vaidating token: {audience} {B2CGlobalConfiguration.ValidIssuerV1} {B2CGlobalConfiguration.AadTenant}");
             var validationParameters = new TokenValidationParameters()
             {
                 ValidAudience = audience,
@@ -33,31 +34,37 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             {
                 SecurityToken validatedToken;
                 var securityToken = handler.ValidateToken(accessToken, validationParameters, out validatedToken);
-
                 ((ClaimsIdentity)securityToken.Identity).AddClaim(new Claim("token", accessToken));
-               // Logging.DebugMessage($"Token is validated");
                 var principal = new ClaimsPrincipal(securityToken);
-
                 var identity = principal.Identity as ClaimsIdentity;
-                //Logging.DebugMessage($"User: {Resolver.Activate<IIdentityLookup>().GetUserName(identity)} validated");
                 Thread.CurrentPrincipal = principal;
                 HttpContext.Current.User = principal;
                 return principal;
-               // Logging.DebugMessage("Principal set on http context")
             }
             catch (Exception ex)
             {
-                Logging.Exception(ex);  
-                Logging.DebugMessage($"bearer token: {accessToken}", additionalDebugInformation: "Authentication Failure");
+                Logging.Exception(ex);
                 throw new UnauthorizedAccessException("Unable to validate bearer token", ex);
             }
         }
         public static ConcurrentDictionary<string, List<SecurityToken>> cache = new ConcurrentDictionary<string, List<SecurityToken>>();
+        private static System.Timers.Timer _refreshTimer;
+
         public static List<SecurityToken> GetSigningCertificates(string metadataAddress)
         {
             List<SecurityToken> tokens;
             if (cache.TryGetValue(metadataAddress, out tokens)) return tokens;
-            tokens = new List<SecurityToken>();
+            if (_refreshTimer == null)
+            {
+                _refreshTimer = new System.Timers.Timer(TimeSpan.FromMinutes(30).TotalMilliseconds) { Enabled = false };
+                _refreshTimer.Elapsed += _refreshTimer_Elapsed;
+            }
+            return GetAndCacheCertificates(metadataAddress);
+        }
+
+        private static List<SecurityToken> GetAndCacheCertificates(string metadataAddress)
+        {
+            var tokens = new List<SecurityToken>();
 
             if (metadataAddress == null)
             {
@@ -68,7 +75,6 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             {
                 MetadataSerializer serializer = new MetadataSerializer()
                 {
-                    // Do not disable for production code
                     CertificateValidationMode = X509CertificateValidationMode.None
                 };
 
@@ -96,7 +102,14 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 }
             }
             cache.TryAdd(metadataAddress, tokens);
+            _refreshTimer.Start();
             return tokens;
+        }
+
+        private static void _refreshTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            _refreshTimer.Stop();
+            GetAndCacheCertificates(string.Format("https://login.microsoftonline.com/{0}/federationmetadata/2007-06/federationmetadata.xml", B2CGlobalConfiguration.AadTenant));
         }
     }
 }

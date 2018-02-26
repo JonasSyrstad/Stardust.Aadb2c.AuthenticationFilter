@@ -7,11 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.IdentityModel.Tokens;
-using System.ServiceModel.Security;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Http.Results;
 using Stardust.Particles;
+using System.Diagnostics;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
 {
@@ -60,16 +60,17 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         {
             var handler = new JwtSecurityTokenHandler
             {
-                Configuration = new SecurityTokenHandlerConfiguration { CertificateValidationMode = X509CertificateValidationMode.None }
+                Configuration = new SecurityTokenHandlerConfiguration { /*CertificateValidationMode = X509CertificateValidationMode.None*/ }
             };
 
             try
             {
                 SecurityToken validatedToken;
-                var decodedToken = handler.ReadToken(accessToken) as JwtSecurityToken;
-                var isUserToken = decodedToken != null && decodedToken.Claims.Any(claim => claim.Type == "upn");
-                Logging.DebugMessage($"Validating {(isUserToken ? "User" : "ServicePrincipal")}");
-                var settings = isUserToken ? Settings : Settings4App;
+                //no need to read the token even one more time...
+                //var decodedToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+                //var isUserToken = decodedToken != null && decodedToken.Claims.Any(claim => claim.Type == "upn");
+                //Logging.DebugMessage($"Validating {(isUserToken ? "User" : "ServicePrincipal")}");
+                var settings = Settings;// : Settings4App;
 
                 var securityToken = handler.ValidateToken(accessToken, new TokenValidationParameters
                 {
@@ -91,10 +92,9 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             }
         }
 
-        private static OpenIdConnectCachingSecurityTokenProvider Settings { get; } = new OpenIdConnectCachingSecurityTokenProvider(
-            MetadataEndpoint);
+        private readonly static OpenIdConnectCachingSecurityTokenProvider Settings = new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint);
 
-        private static OpenIdConnectCachingSecurityTokenProvider Settings4App { get; } = new OpenIdConnectCachingSecurityTokenProvider($"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration");
+        private readonly static OpenIdConnectCachingSecurityTokenProvider Settings4App = new OpenIdConnectCachingSecurityTokenProvider($"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration");
 
 
         private static string MetadataEndpoint
@@ -129,15 +129,18 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
         public override Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
+            var timer = Stopwatch.StartNew();
             if(!context.Request.Headers.Contains("Authorization"))
             {
                 HttpContext.Current?.Response.AddHeader("x-auth-state", "missing_token");
+                 timer.Stop();
                 return Task.FromResult(0);
             }
             var auth = context?.Request?.Headers?.GetValues("Authorization")?.FirstOrDefault();
             if (auth == null)
             {
                 HttpContext.Current?.Response.AddHeader("x-auth-state", "missing_token");
+                timer.Stop();
                 return Task.FromResult(0);
             }
             var credentials = AuthenticationHeaderValue.Parse(auth);
@@ -160,6 +163,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 Logging.DebugMessage("Validating client token");
                 return base.AuthenticateAsync(context, cancellationToken);
             }
+            timer.Stop();
+            Logging.DebugMessage($"Authorization took {timer.ElapsedMilliseconds}ms");
             return Task.FromResult(0);
         }
 

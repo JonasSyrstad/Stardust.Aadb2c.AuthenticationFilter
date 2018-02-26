@@ -21,8 +21,10 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         public OpenIdConnectCachingSecurityTokenProvider(string metadataEndpoint)
         {
             _metadataEndpoint = metadataEndpoint;
-            _configManager = new ConfigurationManager<OpenIdConnectConfiguration>(metadataEndpoint);
-
+            _configManager = new ConfigurationManager<OpenIdConnectConfiguration>(metadataEndpoint,new System.Net.Http.HttpClient());
+            _configManager.AutomaticRefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30));
+            _configManager.RefreshInterval= TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30)*2);
+            
             RetrieveMetadata();
         }
 
@@ -74,6 +76,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 
         private void RetrieveMetadata()
         {
+           
             _synclock.EnterWriteLock();
             try
             {
