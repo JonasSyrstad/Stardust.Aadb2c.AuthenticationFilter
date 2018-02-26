@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Stardust.Aadb2c.AuthenticationFilter;
+using Stardust.Aadb2c.AuthenticationFilter.Core;
 using Stardust.Particles;
 
 namespace Stardust.Aadb2c.Swagger
 {
     public static class B2cGlobalSwaggerConfig
     {
-        private static readonly object Triowing=new object();
+        private static readonly object Triowing = new object();
         private static ScopeDescription[] _scopes;
         public static ScopeDescription[] Scopes
         {
@@ -31,7 +32,7 @@ namespace Stardust.Aadb2c.Swagger
                                     $"scope {parts[0]} contains ; in either the scope name part or in the description ({scope})",
                                     "aadScopes");
                             internalList.Add(
-                                new ScopeDescription {ScopeName = parts[0], Description = parts.Last()});
+                                new ScopeDescription { ScopeName = parts[0], Description = parts.Last() });
                         }
                         _scopes = internalList.ToArray();
                         return _scopes;
@@ -41,11 +42,11 @@ namespace Stardust.Aadb2c.Swagger
                         return _scopes;
                     }
                 }
-                
+
             }
             set
             {
-                ConfigurationManagerHelper.SetValueOnKey("aadScopes",string.Join("|",value.Select(v=>$"{v.ScopeName};{v.Description}")));
+                ConfigurationManagerHelper.SetValueOnKey("aadScopes", string.Join("|", value.Select(v => $"{v.ScopeName};{v.Description}")));
             }
         }
 
@@ -121,7 +122,7 @@ namespace Stardust.Aadb2c.Swagger
             get { return B2CGlobalConfiguration.AadPolicy; }
             set
             {
-                B2CGlobalConfiguration.AadPolicy=value;
+                B2CGlobalConfiguration.AadPolicy = value;
             }
         }
     }

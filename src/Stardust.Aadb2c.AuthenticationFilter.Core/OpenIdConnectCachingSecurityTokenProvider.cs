@@ -1,19 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Stardust.Particles;
-
-namespace Stardust.Aadb2c.AuthenticationFilter
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+namespace Stardust.Aadb2c.AuthenticationFilter.Core
 {
     public class OpenIdConnectCachingSecurityTokenProvider
     {
         public ConfigurationManager<OpenIdConnectConfiguration> _configManager;
         private string _issuer;
-        private IEnumerable<SecurityToken> _tokens;
+        private ICollection<SecurityKey> _tokens;
         private readonly string _metadataEndpoint;
 
         private readonly ReaderWriterLockSlim _synclock = new ReaderWriterLockSlim();
@@ -21,10 +22,14 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         public OpenIdConnectCachingSecurityTokenProvider(string metadataEndpoint)
         {
             _metadataEndpoint = metadataEndpoint;
-            _configManager = new ConfigurationManager<OpenIdConnectConfiguration>(metadataEndpoint,new System.Net.Http.HttpClient());
-            _configManager.AutomaticRefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30));
-            _configManager.RefreshInterval= TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30)*2);
-            
+            _configManager =
+                new ConfigurationManager<OpenIdConnectConfiguration>(metadataEndpoint,
+                    new OpenIdConnectConfigurationRetriever())
+                {
+                    AutomaticRefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30)),
+                    RefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30) * 2)
+                };
+
             RetrieveMetadata();
         }
 
@@ -57,7 +62,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         /// <value>
         /// All known security tokens.
         /// </value>
-        public IEnumerable<SecurityToken> SecurityTokens
+        public ICollection<SecurityKey> SecurityTokens
         {
             get
             {
@@ -65,7 +70,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 _synclock.EnterReadLock();
                 try
                 {
-                    return _tokens;     
+                    return _tokens;
                 }
                 finally
                 {
@@ -76,19 +81,19 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 
         private void RetrieveMetadata()
         {
-           
+
             _synclock.EnterWriteLock();
             try
             {
                 var config = Task.Run(_configManager.GetConfigurationAsync).Result;
                 _issuer = config.Issuer;
-                _tokens = config.SigningTokens;
-                if (ConfigurationManagerHelper.GetValueOnKey("stardust.doLogging", false))
-                    Logging.DebugMessage(JsonConvert.SerializeObject(config));
+                _tokens = config.SigningKeys;
+                //if (ConfigurationManagerHelper.GetValueOnKey("stardust.doLogging", false))
+                //    Logging.DebugMessage(JsonConvert.SerializeObject(config));
             }
             catch (Exception ex)
             {
-                ex.Log();
+                //ex.Log();
             }
             finally
             {

@@ -5,10 +5,10 @@ Simple Authentication Filter for WebApi that supports Azure AD B2C
 
 ### Install nuget package
 ```nuget
-PM>  Install-Package Stardust.Aadb2c.AuthenticationFilter 
+PM>  Install-Package Stardust.Aadb2c.AuthenticationFilter -Version 2.0.0-pre0004
 ```
-
-### add filter
+### .net Framework
+#### add filter
 In WebApiConfig.cs add 
 ```CS
 public static void Register(HttpConfiguration config)
@@ -28,9 +28,9 @@ public static void Register(HttpConfiguration config)
         }
 ```
 
-### Configure filter
+#### Configure filter
 
-#### In config
+##### In config
 ```XML
 <appSettings>
     <!-- mandatory -->
@@ -42,7 +42,7 @@ public static void Register(HttpConfiguration config)
 </appSettings>
 ```
 
-#### In code
+##### In code
 ```CS
     protected void Application_Start()
     {
@@ -61,7 +61,28 @@ public static void Register(HttpConfiguration config)
         BundleConfig.RegisterBundles(BundleTable.Bundles);
     }
 ```
+### asp.net core
+#### add filter
+```CS
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddB2CAuthentication("OAuth2", "Azure B2C authentication");//Add the B2C authentication scheme
+        }
 
+         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+
+            }
+            app.AddConfigurationManager(new ConfigManager());// Add the configuration binding. Implement your own manager to fit with your configuration scheme.
+            //the netcore version uses the same config keys as the .net framework version.
+            app.UseMvc();            
+        }
+```
 # Swagger UI support for OAuth2 implicit grant flow
 
 ## Usage

@@ -1,0 +1,66 @@
+2018-02-22 16:41:43.343 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:41:43.344 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:41:43.344 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:41:43.344 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:41:43.344 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:41:43.344 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:41:43.344 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:41:43.344 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:41:43.345 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:41:43.345 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 0.8514ms
+2018-02-22 16:41:43.345 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 1.2682ms 401 
+2018-02-22 16:57:29.932 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:57:29.932 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:57:29.933 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:57:29.933 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:57:29.933 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:57:29.933 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:57:29.933 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:57:29.933 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:57:29.933 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:57:29.933 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 0.7072ms
+2018-02-22 16:57:29.933 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 1.343ms 401 
+2018-02-22 16:57:36.686 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:57:36.686 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:57:36.686 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:57:36.686 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:57:36.686 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:57:36.686 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:57:36.686 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:57:36.686 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:57:36.687 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:57:36.687 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 0.5059ms
+2018-02-22 16:57:36.687 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 1.275ms 401 
+2018-02-22 16:57:37.380 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:57:37.381 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:57:37.382 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:57:37.382 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:57:37.382 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:57:37.382 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:57:37.382 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:57:37.382 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:57:37.382 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:57:37.382 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 1.1893ms
+2018-02-22 16:57:37.383 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 2.2262ms 401 
+2018-02-22 16:57:37.546 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:57:37.546 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:57:37.546 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:57:37.546 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:57:37.546 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:57:37.546 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:57:37.546 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:57:37.546 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:57:37.546 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:57:37.546 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 0.4878ms
+2018-02-22 16:57:37.547 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 0.8956ms 401 
+2018-02-22 16:57:37.738 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request starting HTTP/1.1 GET http://localhost:19083/api/test/Echo2/test  
+2018-02-22 16:57:37.738 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Looking for bearer token! HandleAuthenticateAsync
+2018-02-22 16:57:37.738 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: No bearer token provided
+2018-02-22 16:57:37.738 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was not authenticated.
+2018-02-22 16:57:37.738 +01:00 [Information] Microsoft.AspNetCore.Authorization.DefaultAuthorizationService: Authorization failed for user: (null).
+2018-02-22 16:57:37.738 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2018-02-22 16:57:37.738 +01:00 [Information] Microsoft.AspNetCore.Mvc.ChallengeResult: Executing ChallengeResult with authentication schemes (OAuth2).
+2018-02-22 16:57:37.738 +01:00 [Debug] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: Test
+2018-02-22 16:57:37.738 +01:00 [Information] Stardust.Aadb2c.AuthenticationFilterNetCore.B2COAuthHandler: AuthenticationScheme: OAuth2 was challenged.
+2018-02-22 16:57:37.738 +01:00 [Information] Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker: Executed action TempModule.Controllers.MyServiesController.Echo2Async (773ea732ec394d138bfec68fcb26d405_ServiceWrapper) in 0.4685ms
+2018-02-22 16:57:37.739 +01:00 [Information] Microsoft.AspNetCore.Hosting.Internal.WebHost: Request finished in 0.9537ms 401 

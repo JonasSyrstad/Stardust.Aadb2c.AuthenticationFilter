@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stardust.Aadb2c.AuthenticationFilter.Core", "Stardust.Aadb2c.AuthenticationFilter.Core\Stardust.Aadb2c.AuthenticationFilter.Core.csproj", "{8B1AC814-20A0-4D16-A6E2-798A2684D5FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Aadb2c.AuthenticationFilter", "Stardust.Aadb2c.AuthenticationFilter\Stardust.Aadb2c.AuthenticationFilter.csproj", "{8DFAB683-8E69-4510-99DB-E0EDD2E1A5CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stardust.Aadb2c.AuthenticationFilterNetCore", "netCore\Stardust.Aadb2c.AuthenticationFilterNetCore\Stardust.Aadb2c.AuthenticationFilterNetCore.csproj", "{BF5851AC-0D0A-4EA8-87C7-D7C4BD0DDB06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Aadb2c.Swagger", "Stardust.Aadb2c.Swagger\Stardust.Aadb2c.Swagger.csproj", "{FF6318D9-C014-4E02-9DB1-1371D179C477}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTestWeb", "NetCoreTestWeb\NetCoreTestWeb.csproj", "{EBCF04D9-4EFF-4C53-8429-EF376476B00C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1AC814-20A0-4D16-A6E2-798A2684D5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1AC814-20A0-4D16-A6E2-798A2684D5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1AC814-20A0-4D16-A6E2-798A2684D5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1AC814-20A0-4D16-A6E2-798A2684D5FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DFAB683-8E69-4510-99DB-E0EDD2E1A5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFAB683-8E69-4510-99DB-E0EDD2E1A5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFAB683-8E69-4510-99DB-E0EDD2E1A5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFAB683-8E69-4510-99DB-E0EDD2E1A5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF5851AC-0D0A-4EA8-87C7-D7C4BD0DDB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5851AC-0D0A-4EA8-87C7-D7C4BD0DDB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5851AC-0D0A-4EA8-87C7-D7C4BD0DDB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5851AC-0D0A-4EA8-87C7-D7C4BD0DDB06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6318D9-C014-4E02-9DB1-1371D179C477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6318D9-C014-4E02-9DB1-1371D179C477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6318D9-C014-4E02-9DB1-1371D179C477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6318D9-C014-4E02-9DB1-1371D179C477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCF04D9-4EFF-4C53-8429-EF376476B00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCF04D9-4EFF-4C53-8429-EF376476B00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCF04D9-4EFF-4C53-8429-EF376476B00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCF04D9-4EFF-4C53-8429-EF376476B00C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {874DBBAD-3B3F-442C-99CD-AD65315715FB}
+	EndGlobalSection
+EndGlobal
