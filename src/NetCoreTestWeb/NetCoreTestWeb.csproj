@@ -11,9 +11,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="NetEscapades.Extensions.Logging.RollingFile" Version="1.0.0" />
-    <PackageReference Include="Stardust.Interstellar.Rest" Version="3.0.0.4-pre001" />
-    <PackageReference Include="Stardust.Interstellar.Rest.Annotations" Version="2.0.0.1-pre005" />
-    <PackageReference Include="Stardust.Particles" Version="4.0.2.1-pre00001" />
+    <PackageReference Include="Stardust.Interstellar.Rest" Version="3.1.0-pre004" />
+    <PackageReference Include="Stardust.Interstellar.Rest.Annotations" Version="2.1.0-pre005" />
+    <PackageReference Include="Stardust.Interstellar.Rest.Service" Version="1.1.0-pre007" />
+    <PackageReference Include="Stardust.Particles" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
     <PackageReference Include="SwashBuckle.AspNetCore.MicrosoftExtensions" Version="0.4.0" />
   </ItemGroup>
@@ -25,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\netCore\Stardust.Aadb2c.AuthenticationFilterNetCore\Stardust.Aadb2c.AuthenticationFilterNetCore.csproj" />
     <ProjectReference Include="..\Stardust.Aadb2c.AuthenticationFilter.Core\Stardust.Aadb2c.AuthenticationFilter.Core.csproj" />
-    <ProjectReference Include="..\Stardust.Interstellar.Rest.CoreService\Stardust.Interstellar.Rest.CoreService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Http.Filters;
+using System.Web.Http.Results;
 using Stardust.Aadb2c.AuthenticationFilter.Core;
 using Stardust.Particles;
 
@@ -27,8 +31,9 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             {
                 var auth = context?.Request.Headers.Authorization;
                 ClaimsPrincipal user;
-                if (auth != null && string.Equals(auth.Scheme, "Bearer", StringComparison.InvariantCultureIgnoreCase))
+                if (auth != null && string.Equals(auth.Scheme, "Bearer", StringComparison.InvariantCultureIgnoreCase) && !auth.Parameter.IsNullOrWhiteSpace())
                 {
+
                     var credentials = auth;
                     var token = credentials.Parameter;
                     user = TokenValidator.Validate(auth.Parameter);
@@ -40,7 +45,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             }
             catch (Exception ex)
             {
-                throw;
+                context.ErrorResult = new StatusCodeResult(HttpStatusCode.Forbidden, context.ActionContext.ControllerContext.Controller as ApiController);
+                return Task.CompletedTask;
             }
         }
 
