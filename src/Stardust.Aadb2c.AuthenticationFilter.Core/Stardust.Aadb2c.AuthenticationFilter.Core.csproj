@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,6 +14,8 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</RepositoryUrl>
+    <IncludeSource>True</IncludeSource>
+    <IncludeSymbols>True</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
