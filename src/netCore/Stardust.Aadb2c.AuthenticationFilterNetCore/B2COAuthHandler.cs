@@ -1,22 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Stardust.Aadb2c.AuthenticationFilter.Core;
+using Stardust.Particles;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Stardust.Aadb2c.AuthenticationFilter.Core;
-using Stardust.Aadb2c.AuthenticationFilter;
-using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
 {
-    
+
     public static class AuthenticationFilterConfiguration
     {
         public static IApplicationBuilder AddConfigurationManager(this IApplicationBuilder app, IConfigurationReader manager)
@@ -25,18 +23,18 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             return app;
         }
 
-        public static IApplicationBuilder AddConfigurationManager(this IApplicationBuilder app, IDictionary<string,string> configSettings)
+        public static IApplicationBuilder AddConfigurationManager(this IApplicationBuilder app, IDictionary<string, string> configSettings)
         {
             ConfigurationManagerHelper.SetManager(new CoreConfigurationManager(configSettings));
             return app;
         }
-        
-        public static IApplicationBuilder AddConfigurationManager(this IApplicationBuilder app,IConfigurationBuilder builder)
+
+        public static IApplicationBuilder AddConfigurationManager(this IApplicationBuilder app, IConfigurationBuilder builder)
         {
             return app.AddConfigurationManager(new CoreConfigurationManager(builder));
         }
 
-        public static AuthenticationBuilder AddB2CAuthentication(this AuthenticationBuilder builder,string name,string displayName)
+        public static AuthenticationBuilder AddB2CAuthentication(this AuthenticationBuilder builder, string name, string displayName)
         {
             builder.AddScheme<B2COptions, B2COAuthHandler>(name, displayName, o =>
             {
@@ -84,8 +82,11 @@ namespace Stardust.Aadb2c.AuthenticationFilter
 
     public class B2COAuthHandler : RemoteAuthenticationHandler<B2COptions>
     {
-        public B2COAuthHandler(IOptionsMonitor<B2COptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
+        private readonly IServiceProvider _provider;
+
+        public B2COAuthHandler(IServiceProvider provider, IOptionsMonitor<B2COptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
+            _provider = provider;
         }
 
         protected override Task<HandleRequestResult> HandleRemoteAuthenticateAsync()
@@ -96,7 +97,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                 var v = Request.Headers["Authorization"].FirstOrDefault();
                 if (v != null && v.Split(' ')[0].Equals("bearer", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var user = TokenValidator.Validate(v.Split(' ')[1]);
+                    var user = TokenValidator.Validate(v.Split(' ')[1], _provider);
                     Context.User = user;
 
                     return Task.FromResult(HandleRequestResult.Success(new AuthenticationTicket(user, Scheme.Name)));

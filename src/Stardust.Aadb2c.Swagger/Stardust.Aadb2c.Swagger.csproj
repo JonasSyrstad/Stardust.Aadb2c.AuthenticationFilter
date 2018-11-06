@@ -226,8 +226,8 @@
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.0.3\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
@@ -311,14 +311,14 @@
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Aadb2c.AuthenticationFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.2.0.1.2\lib\net471\Stardust.Aadb2c.AuthenticationFilter.dll</HintPath>
+    <Reference Include="Stardust.Aadb2c.AuthenticationFilter, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.2.0.3\lib\net471\Stardust.Aadb2c.AuthenticationFilter.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Aadb2c.AuthenticationFilter.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.1\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
+    <Reference Include="Stardust.Aadb2c.AuthenticationFilter.Core, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.7\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
     </Reference>
     <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.5.0.0\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+      <HintPath>..\packages\Stardust.Particles.5.0.1\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\Stardust.Aadb2c.AuthenticationFilter\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>

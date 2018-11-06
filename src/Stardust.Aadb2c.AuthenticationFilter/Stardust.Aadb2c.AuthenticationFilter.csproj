@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Stardust.Aadb2c.AuthenticationFilter</RootNamespace>
     <AssemblyName>Stardust.Aadb2c.AuthenticationFilter</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=5.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.2.1\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
@@ -46,11 +49,11 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Aadb2c.AuthenticationFilter.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.1\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
+    <Reference Include="Stardust.Aadb2c.AuthenticationFilter.Core, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.7\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
     </Reference>
     <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.5.0.0\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+      <HintPath>..\packages\Stardust.Particles.5.0.1\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

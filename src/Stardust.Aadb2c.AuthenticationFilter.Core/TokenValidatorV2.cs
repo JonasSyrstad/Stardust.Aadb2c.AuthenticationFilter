@@ -33,9 +33,11 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                     IssuerSigningKeys = Settings.SecurityTokens
 
                 }, out validatedToken);
+                
                 var principal = new ClaimsPrincipal(securityToken);
+                
                 Thread.CurrentPrincipal = principal;
-                logger?.DebugMessage($"User: {principal.Identity.Name}");
+                logger?.DebugMessage($"User: {principal.FindFirst(TokenValidator.NameClaimType??ClaimTypes.Name)}");
                 return principal;
             }
             catch (Exception ex)

@@ -38,6 +38,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter
                     var token = credentials.Parameter;
                     user = TokenValidator.Validate(auth.Parameter);
                     HttpContext.Current.User = user;
+                    context.Principal = HttpContext.Current.User;
 
                 }
                 return Task.CompletedTask;

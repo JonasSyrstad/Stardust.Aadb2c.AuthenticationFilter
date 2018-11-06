@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -13,16 +6,17 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NetCoreTestWeb.Controllers;
 using Stardust.Aadb2c.AuthenticationFilter;
 using Stardust.Aadb2c.AuthenticationFilter.Core;
-using Stardust.Aadb2c.AuthenticationFilter;
-using Stardust.Interstellar.Rest.Common;
 using Stardust.Interstellar.Rest.Extensions;
 using Stardust.Interstellar.Rest.Service;
 using Stardust.Particles;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using ILogger = Stardust.Interstellar.Rest.Common.ILogger;
 
 namespace NetCoreTestWeb
@@ -42,6 +36,7 @@ namespace NetCoreTestWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ILogger, LogWrapper>();
+            //.AddSingleton<ILogger, LogWrapper>();
             //services.AddSingleton<Microsoft.Extensions.Logging.ILogger<Startup>, Microsoft.Extensions.Logging.>()
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -74,8 +69,7 @@ namespace NetCoreTestWeb
 
             }
             ConfigurationManagerHelper.SetManager(new ConfigManager());
-            ExtensionsFactory.SetServiceLocator(new ServiceLocator(app.ApplicationServices));
-            ExtensionsFactory.GetService<ILogger>().Message("configured!");
+            app.ApplicationServices.GetService<ILogger>().Message("configured!");
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -163,9 +157,24 @@ namespace NetCoreTestWeb
             return _serviceProvider.GetService<T>();
         }
 
+        public object GetService(Type serviceType)
+        {
+            return _serviceProvider.GetService(serviceType);
+        }
+
         public IEnumerable<T> GetServices<T>()
         {
             return _serviceProvider.GetServices<T>();
+        }
+
+        public object CreateInstanceOf(Type type)
+        {
+            return ActivatorUtilities.CreateInstance(_serviceProvider, type);
+        }
+
+        public T CreateInstance<T>() where T : class
+        {
+            return ActivatorUtilities.CreateInstance<T>(_serviceProvider);
         }
     }
 }
