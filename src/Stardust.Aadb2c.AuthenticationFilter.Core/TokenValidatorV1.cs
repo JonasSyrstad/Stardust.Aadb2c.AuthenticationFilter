@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using Stardust.Particles;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
-using Microsoft.IdentityModel.Tokens;
-using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter.Core
 {
@@ -29,11 +29,10 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 //   return new
                 //} //GetSigningCertificates(string.Format("https://login.microsoftonline.com/{0}/federationmetadata/2007-06/federationmetadata.xml", B2CGlobalConfiguration.AadTenant))
             };
-            SecurityToken validatedToken;
             try
             {
 
-                var securityToken = handler.ValidateToken(accessToken, validationParameters, out validatedToken);
+                var securityToken = handler.ValidateToken(accessToken, validationParameters, out SecurityToken validatedToken);
 
                 ((ClaimsIdentity)securityToken.Identity).AddClaim(new Claim("token", accessToken));
                 // Logging.DebugMessage($"Token is validated");

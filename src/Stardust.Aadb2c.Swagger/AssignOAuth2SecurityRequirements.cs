@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Swashbuckle.Swagger;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Swashbuckle.Swagger;
 
 namespace Stardust.Aadb2c.Swagger
 {
@@ -17,8 +17,8 @@ namespace Stardust.Aadb2c.Swagger
 
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
         {
-            var scopes = new List<string> {"openid"};
-            scopes.AddRange(_scopes.Select(s=>s.ScopeName));
+            var scopes = new List<string> { "openid" };
+            scopes.AddRange(_scopes.Select(s => s.ScopeName));
             var actFilters = apiDescription.ActionDescriptor.GetFilterPipeline();
             var allowsAnonymous = actFilters.Select(f => f.Instance).OfType<OverrideAuthorizationAttribute>().Any();
             if (allowsAnonymous)

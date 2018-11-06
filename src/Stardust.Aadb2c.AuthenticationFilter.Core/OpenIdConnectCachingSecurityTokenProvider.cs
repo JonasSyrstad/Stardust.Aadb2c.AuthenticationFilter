@@ -29,7 +29,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                     AutomaticRefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30)),
                     RefreshInterval = TimeSpan.FromMinutes(ConfigurationManagerHelper.GetValueOnKey("certificateRefresInterval", 30) * 2)
                 };
-
+            
             RetrieveMetadata();
         }
 
