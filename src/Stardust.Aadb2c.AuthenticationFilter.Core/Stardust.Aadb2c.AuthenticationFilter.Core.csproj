@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <Company>Stardust</Company>
     <Copyright>Copyright © Stardust 2018</Copyright>
     <PackageLicenseUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter/blob/master/LICENSE</PackageLicenseUrl>
@@ -11,7 +11,8 @@
     <RepositoryType>github</RepositoryType>
     <PackageTags>authentication aad b2c azure</PackageTags>
     <Description>core token validation and configuration for azure ad b2c</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for multipple Audiences for v2 token validation.
+</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</RepositoryUrl>
     <IncludeSource>True</IncludeSource>

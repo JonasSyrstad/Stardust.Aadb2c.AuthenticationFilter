@@ -35,8 +35,11 @@ public static void Register(HttpConfiguration config)
 <appSettings>
     <!-- mandatory -->
     <add key ="aadTenant" value="tenantName.onmicrosoft.com" />
-    <add key="audience" value="you appid" />
+    <add key="audience" value="your appid" /><!-- supports ; separated list of audiences.-->
     <add key="issuerHostName" value="https://login.microsoftonline.com/{your tenant id}/v2.0/" />
+    <add key="audience" value="you appid" /><!-- supports ; separated list of audiences.-->
+    <add key="issuerHostName_v1" value="https://sts.windows.net/{your tenant id}/" />
+    <add key="audience_v1" value="your V1 appid" />
     <!-- optional -->
     <add key ="aadPolicy" value="B2C_1A_SignIn" />
 </appSettings>

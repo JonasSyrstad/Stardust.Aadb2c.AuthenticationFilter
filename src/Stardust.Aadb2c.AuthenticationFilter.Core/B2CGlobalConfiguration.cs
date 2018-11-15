@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Stardust.Particles;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
-using Stardust.Particles;
 
 namespace Stardust.Aadb2c.AuthenticationFilter.Core
 {
     public static class B2CGlobalConfiguration
     {
+        /// <summary>
+        /// Semicolon separated list of audiences
+        /// </summary>
         public static string Audience
         {
             get => ConfigurationManagerHelper.GetValueOnKey("audience");

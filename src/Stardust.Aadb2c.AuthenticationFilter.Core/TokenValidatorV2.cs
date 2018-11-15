@@ -26,13 +26,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             {
                 SecurityToken validatedToken;
 
-                var securityToken = handler.ValidateToken(accessToken, new TokenValidationParameters
-                {
-                    ValidAudience = Resource,
-                    ValidIssuers = new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" },
-                    IssuerSigningKeys = Settings.SecurityTokens
-
-                }, out validatedToken);
+                var securityToken = handler.ValidateToken(accessToken, ValidationParameters(), out validatedToken);
                 
                 var principal = new ClaimsPrincipal(securityToken);
                 
@@ -45,6 +39,19 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 logger?.Exception(ex);
                 throw new UnauthorizedAccessException("Unable to validate token", ex);
             }
+        }
+
+        private static TokenValidationParameters ValidationParameters()
+        {
+            var tokenValidationParameters= new TokenValidationParameters
+            {
+                ValidAudiences = Resource.Split(';'),
+                ValidIssuers = new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" },
+                IssuerSigningKeys = Settings.SecurityTokens
+
+            };
+            return tokenValidationParameters;
+
         }
 
         private static readonly OpenIdConnectCachingSecurityTokenProvider Settings = new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint);
