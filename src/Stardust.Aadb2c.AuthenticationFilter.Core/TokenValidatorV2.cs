@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Stardust.Particles;
+using Stardust.Particles.Collection;
 
 namespace Stardust.Aadb2c.AuthenticationFilter.Core
 {
@@ -43,10 +44,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
 
         private static TokenValidationParameters ValidationParameters()
         {
+            var issuers = B2CGlobalConfiguration.ValidIssuer.Split(';');
             var tokenValidationParameters= new TokenValidationParameters
             {
                 ValidAudiences = Resource.Split(';'),
-                ValidIssuers = new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" },
+                
+                ValidIssuers = issuers.Length==1? new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" }:issuers,
                 IssuerSigningKeys = Settings.SecurityTokens
 
             };
@@ -54,13 +57,15 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
 
         }
 
-        private static readonly OpenIdConnectCachingSecurityTokenProvider Settings = new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint);
+        private static readonly IOpenIdConnectCachingSecurityTokenProvider Settings =MetadataEndpoint!=null? (IOpenIdConnectCachingSecurityTokenProvider)new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint):new OpenIdConnectCachingSecurityTokenProviderV2(B2CGlobalConfiguration.AadTenants);
 
 
         private static string MetadataEndpoint
         {
             get
             {
+                if (B2CGlobalConfiguration.AadTenants.ContainsElements())
+                    return null;
                 if (string.IsNullOrWhiteSpace(ConfigurationManagerHelper.GetValueOnKey("aadPolicy")))
                     return $"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration";
                 return $"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration?p={B2CGlobalConfiguration.AadPolicy}";

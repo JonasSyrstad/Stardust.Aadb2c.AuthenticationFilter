@@ -1,4 +1,5 @@
 ﻿using Stardust.Particles;
+using Stardust.Particles.Collection.Arrays;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
@@ -29,6 +30,9 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             set => ConfigurationManagerHelper.SetValueOnKey("aadPolicy", value, true);
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         public static string ValidIssuer
         {
             get => ConfigurationManagerHelper.GetValueOnKey("issuerHostName");
@@ -51,6 +55,16 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
         {
             get => ConfigurationManagerHelper.GetValueOnKey("audience_v1");
             set => ConfigurationManagerHelper.SetValueOnKey("audience_v1", value, true);
+        }
+
+        public static string[] AadTenants
+        {
+            get => ConfigurationManagerHelper.GetValueOnKey("aadTenants")?.Split(';');
+            set
+            {
+                if (value.ContainsElements())
+                    ConfigurationManagerHelper.SetValueOnKey("aadTenants", string.Join(";", value), true);
+            }
         }
     }
 

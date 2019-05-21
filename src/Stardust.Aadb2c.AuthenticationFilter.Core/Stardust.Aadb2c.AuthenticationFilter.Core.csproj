@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.2.0-rc1</Version>
     <Company>Stardust</Company>
     <Copyright>Copyright © Stardust 2018</Copyright>
-    <PackageLicenseUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>http://stardustframework.wdfiles.com/local--files/blog:_start/logo_smal.png</PackageIconUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>authentication aad b2c azure</PackageTags>
@@ -17,6 +17,8 @@
     <RepositoryUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</RepositoryUrl>
     <IncludeSource>True</IncludeSource>
     <IncludeSymbols>True</IncludeSymbols>
+    <Authors>Stardust</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

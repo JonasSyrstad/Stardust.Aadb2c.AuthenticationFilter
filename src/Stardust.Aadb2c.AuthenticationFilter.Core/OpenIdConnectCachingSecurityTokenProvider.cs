@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,51 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 namespace Stardust.Aadb2c.AuthenticationFilter.Core
 {
-    public class OpenIdConnectCachingSecurityTokenProvider
+    public class OpenIdConnectCachingSecurityTokenProviderV2 : IOpenIdConnectCachingSecurityTokenProvider
+    {
+        private readonly string[] _metadataEndpoints;
+        private List<OpenIdConnectCachingSecurityTokenProvider> _caches;
+
+        public OpenIdConnectCachingSecurityTokenProviderV2(string[] metadataEndpoints)
+        {
+            _metadataEndpoints = metadataEndpoints;
+            _caches=new List<OpenIdConnectCachingSecurityTokenProvider>();
+            foreach (var metadataEndpoint in metadataEndpoints)
+            {
+                _caches.Add(new OpenIdConnectCachingSecurityTokenProvider(metadataEndpoint));
+            }
+        }
+
+        public ICollection<SecurityKey> SecurityTokens
+        {
+            get
+            {
+                var list=new List<SecurityKey>();
+                foreach (var openIdConnectCachingSecurityTokenProvider in _caches)
+                {
+                    list.AddRange(openIdConnectCachingSecurityTokenProvider.SecurityTokens);
+                }
+                return list;
+            }
+        }
+
+        public string[] Issuers
+        {
+            get { return _caches.Select(p => p.Issuer).ToArray(); }
+        }
+    }
+    public interface IOpenIdConnectCachingSecurityTokenProvider
+    {
+        /// <summary>
+        /// Gets all known security tokens.
+        /// </summary>
+        /// <value>
+        /// All known security tokens.
+        /// </value>
+        ICollection<SecurityKey> SecurityTokens { get; }
+    }
+
+    public class OpenIdConnectCachingSecurityTokenProvider : IOpenIdConnectCachingSecurityTokenProvider
     {
         public ConfigurationManager<OpenIdConnectConfiguration> _configManager;
         private string _issuer;
