@@ -53,7 +53,7 @@
       <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.7\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
     </Reference>
     <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.5.0.1\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+      <HintPath>..\packages\Stardust.Particles.5.0.2\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

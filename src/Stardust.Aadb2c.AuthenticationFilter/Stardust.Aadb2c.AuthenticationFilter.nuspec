@@ -22,24 +22,24 @@
         <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
         <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
         <dependency id="Newtonsoft.Json" version="10.0.3" />
-        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0-rc1" />
-        <dependency id="Stardust.Particles" version="5.0.1"/>
+        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0" />
+        <dependency id="Stardust.Particles" version="5.0.2"/>
       </group>
       <group targetFramework="netcoreapp2.0">
         <dependency id="Microsoft.AspNetCore" version="2.0.1" />
         <dependency id="Microsoft.AspNetCore.Authentication" version="2.0.1" />
         <dependency id="Microsoft.AspNetCore.Authentication.Abstractions" version="2.0.1" />
         <dependency id="Newtonsoft.Json" version="10.0.3" />
-        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0-rc1" />
-        <dependency id="Stardust.Particles" version="5.0.1"/>
+        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0" />
+        <dependency id="Stardust.Particles" version="5.0.2"/>
       </group>
       <group targetFramework="netstandard2.0">
         <dependency id="Microsoft.AspNetCore" version="2.0.1" />
         <dependency id="Microsoft.AspNetCore.Authentication" version="2.0.1" />
         <dependency id="Microsoft.AspNetCore.Authentication.Abstractions" version="2.0.1" />
         <dependency id="Newtonsoft.Json" version="10.0.3" />
-        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0-rc1" />
-        <dependency id="Stardust.Particles" version="5.0.1"/>
+        <dependency id="Stardust.Aadb2c.AuthenticationFilter.Core" version="2.2.0" />
+        <dependency id="Stardust.Particles" version="5.0.2"/>
       </group>
     </dependencies>
   </metadata>
