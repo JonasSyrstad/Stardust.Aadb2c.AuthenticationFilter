@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0
+﻿
 using Microsoft.AspNetCore.Authentication;
 
 namespace Stardust.Aadb2c.AuthenticationFilter
@@ -8,4 +8,3 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         
     }
 }
-#endif

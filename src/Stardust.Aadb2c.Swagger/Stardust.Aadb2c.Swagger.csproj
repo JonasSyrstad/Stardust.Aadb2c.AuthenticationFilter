@@ -167,9 +167,6 @@
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Aadb2c.AuthenticationFilter, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.2.0.3\lib\net471\Stardust.Aadb2c.AuthenticationFilter.dll</HintPath>
-    </Reference>
     <Reference Include="Stardust.Aadb2c.AuthenticationFilter.Core, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stardust.Aadb2c.AuthenticationFilter.Core.1.0.0.7\lib\netstandard2.0\Stardust.Aadb2c.AuthenticationFilter.Core.dll</HintPath>
     </Reference>

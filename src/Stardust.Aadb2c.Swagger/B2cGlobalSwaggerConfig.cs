@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stardust.Aadb2c.AuthenticationFilter;
 using Stardust.Aadb2c.AuthenticationFilter.Core;
 using Stardust.Particles;
 

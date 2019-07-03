@@ -1,5 +1,4 @@
-﻿#if NETSTANDARD2_0
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Stardust.Aadb2c.AuthenticationFilter.Core;
@@ -73,4 +72,3 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         }
     }
 }
-#endif
