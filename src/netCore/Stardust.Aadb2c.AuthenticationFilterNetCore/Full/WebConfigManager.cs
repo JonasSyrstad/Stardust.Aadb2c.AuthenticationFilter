@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿#if NET461  
+using System.Collections.Specialized;
 using System.Configuration;
 using Stardust.Particles;
 
@@ -9,3 +10,4 @@ namespace Stardust.Aadb2c.AuthenticationFilter
         public NameValueCollection AppSettings => ConfigurationManager.AppSettings;
     }
 }
+#endif
