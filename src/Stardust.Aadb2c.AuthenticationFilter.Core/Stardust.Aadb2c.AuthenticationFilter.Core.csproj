@@ -6,7 +6,6 @@
     <Version>2.2.0-rc1</Version>
     <Company>Stardust</Company>
     <Copyright>Copyright © Stardust 2018</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>http://stardustframework.wdfiles.com/local--files/blog:_start/logo_smal.png</PackageIconUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>authentication aad b2c azure</PackageTags>

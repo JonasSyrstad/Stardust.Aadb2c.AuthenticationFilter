@@ -24,10 +24,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 ValidAudience = audience,
                 ValidIssuer = B2CGlobalConfiguration.ValidIssuerV1,
                 IssuerSigningKeys = GetSigningCertificates(string.Format("https://login.microsoftonline.com/{0}/federationmetadata/2007-06/federationmetadata.xml", B2CGlobalConfiguration.AadTenant))
-                //IssuerSigningKeyResolver= (token, securityToken, kid, parameters) =>
-                //{
-                //   return new
-                //} //GetSigningCertificates(string.Format("https://login.microsoftonline.com/{0}/federationmetadata/2007-06/federationmetadata.xml", B2CGlobalConfiguration.AadTenant))
+                
             };
             try
             {
@@ -35,15 +32,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 var securityToken = handler.ValidateToken(accessToken, validationParameters, out SecurityToken validatedToken);
 
                 ((ClaimsIdentity)securityToken.Identity).AddClaim(new Claim("token", accessToken));
-                // Logging.DebugMessage($"Token is validated");
                 var principal = new ClaimsPrincipal(securityToken);
 
                 var identity = principal.Identity as ClaimsIdentity;
-                //Logging.DebugMessage($"User: {Resolver.Activate<IIdentityLookup>().GetUserName(identity)} validated");
-                Thread.CurrentPrincipal = principal;
+                //Thread.CurrentPrincipal = principal;
                 logger?.DebugMessage($"V1 token validation success: {identity?.Claims?.SingleOrDefault(c => c.Type == "appid")?.Value}");
                 return principal;
-                // Logging.DebugMessage("Principal set on http context")
             }
             catch (Exception ex)
             {

@@ -31,7 +31,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 
                 var principal = new ClaimsPrincipal(securityToken);
                 
-                Thread.CurrentPrincipal = principal;
+                //Thread.CurrentPrincipal = principal;
                 logger?.DebugMessage($"User: {principal.FindFirst(TokenValidator.NameClaimType??ClaimTypes.Name)}");
                 return principal;
             }
