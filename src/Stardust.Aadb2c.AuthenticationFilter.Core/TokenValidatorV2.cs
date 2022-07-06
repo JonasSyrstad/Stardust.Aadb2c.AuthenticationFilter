@@ -18,6 +18,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
 
         public static ClaimsPrincipal ValidateToken(string accessToken, ILogging logger)
         {
+            
             var handler = new JwtSecurityTokenHandler();
             //{
             //    Configuration = new SecurityTokenHandlerConfiguration { /*CertificateValidationMode = X509CertificateValidationMode.None*/ }
@@ -30,6 +31,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 var securityToken = handler.ValidateToken(accessToken, ValidationParameters(), out validatedToken);
                 
                 var principal = new ClaimsPrincipal(securityToken);
+                
                 
                 //Thread.CurrentPrincipal = principal;
                 logger?.DebugMessage($"User: {principal.FindFirst(TokenValidator.NameClaimType??ClaimTypes.Name)}");
@@ -48,7 +50,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             var tokenValidationParameters= new TokenValidationParameters
             {
                 ValidAudiences = Resource.Split(';'),
-                
+               
                 ValidIssuers = issuers.Length==1? new[] { B2CGlobalConfiguration.ValidIssuer, B2CGlobalConfiguration.ValidIssuer + "/" }:issuers,
                 IssuerSigningKeys = Settings.SecurityTokens
 

@@ -51,6 +51,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             set => ConfigurationManagerHelper.SetValueOnKey("stardust.useSupportCode", value.ToString(), true);
         }
 
+        public static bool AllowClientCredentialsOverV2
+        {
+            get => ConfigurationManagerHelper.GetValueOnKey("stardust.allowClientCredentialsOverV2", true);
+            set => ConfigurationManagerHelper.SetValueOnKey("stardust.allowClientCredentialsOverV2", value.ToString(), true);
+        }
+
         public static string AudienceV1
         {
             get => ConfigurationManagerHelper.GetValueOnKey("audience_v1");

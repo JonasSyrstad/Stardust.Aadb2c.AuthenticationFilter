@@ -21,6 +21,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             logger?.DebugMessage($"Vaidating token: {audience} {B2CGlobalConfiguration.ValidIssuerV1} {B2CGlobalConfiguration.AadTenant}");
             var validationParameters = new TokenValidationParameters()
             {
+                
                 ValidAudience = audience,
                 ValidIssuer = B2CGlobalConfiguration.ValidIssuerV1,
                 IssuerSigningKeys = GetSigningCertificates(string.Format("https://login.microsoftonline.com/{0}/federationmetadata/2007-06/federationmetadata.xml", B2CGlobalConfiguration.AadTenant))

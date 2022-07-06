@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461;NET6.0;NET5.0;netcoreapp3.1</TargetFrameworks>
     <RootNamespace>Stardust.Aadb2c.AuthenticationFilter</RootNamespace>
     <AssemblyName>Stardust.Aadb2c.AuthenticationFilter</AssemblyName>
     <Authors>Stardust</Authors>
@@ -21,6 +21,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.0.1" />
   </ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'NET6.0' ">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.0.1" />

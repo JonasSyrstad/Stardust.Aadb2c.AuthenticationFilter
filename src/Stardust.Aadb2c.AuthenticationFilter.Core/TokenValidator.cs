@@ -33,6 +33,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             logger?.DebugMessage("Validating bearer token.");
             var jwt = new JwtSecurityToken(token);
             var userIdClaim = jwt.Claims.SingleOrDefault(c => c.Type == "userId");
+            
             if (userIdClaim != null)
             {
                 logger?.DebugMessage($"Validating user token: {userIdClaim?.Value}");
@@ -50,8 +51,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             {
                 try
                 {
-                    logger?.DebugMessage(
-                        $"Validating client token {jwt.Claims.SingleOrDefault(c => c.Type == "appid")?.Value}");
+                    if (B2CGlobalConfiguration.AllowClientCredentialsOverV2)
+                    {
+                        logger?.DebugMessage($"Validating client token over V2 tokens {jwt.Claims.SingleOrDefault(c => c.Type == "appid")?.Value}");
+                        return TokenValidatorV2.ValidateToken(token, logger);
+                    }
+                    logger?.DebugMessage($"Validating client token {jwt.Claims.SingleOrDefault(c => c.Type == "appid")?.Value}");
                     return TokenValidatorV1.ValidateToken(token, logger);
                 }
                 catch (Exception ex)
