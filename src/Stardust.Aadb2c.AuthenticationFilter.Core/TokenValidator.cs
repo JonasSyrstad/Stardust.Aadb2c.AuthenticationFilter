@@ -52,6 +52,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 try
                 {
                     var tokenVersion = jwt.Claims.SingleOrDefault(c => c.Type == "ver");
+                    logger?.DebugMessage($"token version: {tokenVersion?.Value??"na"}");
                     logger?.DebugMessage($"Issuer: {jwt.Issuer}");
                     if (B2CGlobalConfiguration.AllowClientCredentialsOverV2 &&  tokenVersion?.Value== "2.0")
                     {
