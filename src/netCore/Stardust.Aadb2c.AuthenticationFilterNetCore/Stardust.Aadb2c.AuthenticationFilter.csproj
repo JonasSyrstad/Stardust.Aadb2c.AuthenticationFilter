@@ -4,7 +4,7 @@
     <RootNamespace>Stardust.Aadb2c.AuthenticationFilter</RootNamespace>
     <AssemblyName>Stardust.Aadb2c.AuthenticationFilter</AssemblyName>
     <Authors>Stardust</Authors>
-    <Version>2.3.3</Version>
+    <Version>2.4.0</Version>
     <Description>A simple authentication filter for WebApi that supports azure ad b2c</Description>
     <PackageTags>OAuth2 Azure AAD B2C WebApi</PackageTags>
     <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Aadb2c.AuthenticationFilter</PackageProjectUrl>
