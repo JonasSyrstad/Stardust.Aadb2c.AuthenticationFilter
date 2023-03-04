@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.4.0</Version>
+    <Version>2.5.0</Version>
     <Company>Stardust</Company>
-    <Copyright>Copyright © Stardust 2019</Copyright>
+    <Copyright>Copyright © Stardust 2023</Copyright>
     <PackageIconUrl>https://stardustframework.wdfiles.com/local--files/blog:_start/logo_smal.png</PackageIconUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>authentication aad b2c azure</PackageTags>

@@ -1,6 +1,6 @@
 # Stardust.Aadb2c.AuthenticationFilter
 Simple Authentication Filter for WebApi that supports Azure AD B2C
-
+!! Important! add the  !!
 ## Usage
 
 ### Install nuget package
@@ -9,7 +9,7 @@ PM>  Install-Package Stardust.Aadb2c.AuthenticationFilter -Version 2.0.0-pre0004
 ```
 ### .net Framework
 #### add filter
-In WebApiConfig.cs add 
+In WebApiConfig.cs add the full url to the tenant (https://{tenantname}.b2clogin.com/{tenantId} or https:{customdomain.com}/{tenantId})
 ```CS
 public static void Register(HttpConfiguration config)
         {

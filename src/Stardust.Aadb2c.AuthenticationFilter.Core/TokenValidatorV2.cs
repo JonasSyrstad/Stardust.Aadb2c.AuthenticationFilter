@@ -69,8 +69,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                 if (B2CGlobalConfiguration.AadTenants.ContainsElements())
                     return null;
                 if (string.IsNullOrWhiteSpace(ConfigurationManagerHelper.GetValueOnKey("aadPolicy")))
-                    return $"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration";
-                return $"https://login.microsoftonline.com/{B2CGlobalConfiguration.AadTenant}/v2.0/.well-known/openid-configuration?p={B2CGlobalConfiguration.AadPolicy}";
+                    return $"{ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl")}/v2.0/.well-known/openid-configuration";
+                return $"{ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl")}/v2.0/.well-known/openid-configuration?p={B2CGlobalConfiguration.AadPolicy}";
             }
         }
 

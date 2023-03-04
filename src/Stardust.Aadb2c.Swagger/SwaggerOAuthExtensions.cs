@@ -39,6 +39,28 @@ namespace Stardust.Aadb2c.Swagger
             c.OperationFilter(() => new AssignOAuth2SecurityRequirements(scopes));
         }
 
+        public static void EnableAzureAdB2cOAuth2(this SwaggerDocsConfig c,string b2cInstanceUrl, string tenantId, bool useV2Endpoint, string description, params ScopeDescription[] scopes)
+        {
+            ValidateScopes(scopes.Select(s => s.ScopeName));
+            c.OAuth2("oauth2")
+                .Description(description)
+                .Flow("implicit")
+                .AuthorizationUrl(FormatAuthototyUrl(b2cInstanceUrl, tenantId, useV2Endpoint,"authorize"))
+                //.TokenUrl(TokenUrl(tenantId, useV2Endpoint))
+                .Scopes(s =>
+                {
+                    for (int i = 0; i < DefaultScopes.Length; i++)
+                    {
+                        s.Add(DefaultScopes[i], DefaultScopesNames[i]);
+                    }
+                    foreach (var scopeDescription in scopes)
+                    {
+                        s.Add(scopeDescription.ScopeName, scopeDescription.Description);
+                    }
+                });
+            c.OperationFilter(() => new AssignOAuth2SecurityRequirements(scopes));
+        }
+
         public static void EnableAzureAdB2cOAuth2(this SwaggerDocsConfig c, string tenantId, params ScopeDescription[] scopes)
         {
             c.EnableAzureAdB2cOAuth2(tenantId, true, "OAuth2 Implicit Grant", scopes);
@@ -58,6 +80,11 @@ namespace Stardust.Aadb2c.Swagger
         {
             var type = "token";
             return FormatAuthototyUrl(tenantId, useV2Endpoint, type);
+        }
+
+        private static string FormatAuthototyUrl(string b2cInstanceUrl, string tenantId, bool useV2Endpoint, string type)
+        {
+            return $"{b2cInstanceUrl}/{tenantId}/oauth2/{useV2Endpoint.EndpointVersion()}{type}";
         }
 
         private static string FormatAuthototyUrl(string tenantId, bool useV2Endpoint, string type)
