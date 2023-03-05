@@ -63,6 +63,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             set => ConfigurationManagerHelper.SetValueOnKey("audience_v1", value, true);
         }
 
+        public static string B2cTenantUrl
+        {
+            get => ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl");
+            set => ConfigurationManagerHelper.SetValueOnKey("b2cTenantUrl", value, true);
+        }
+
         public static string[] AadTenants
         {
             get => ConfigurationManagerHelper.GetValueOnKey("aadTenants")?.Split(';');

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.5.0</Version>
+    <Version>2.5.1</Version>
     <Company>Stardust</Company>
     <Copyright>Copyright © Stardust 2023</Copyright>
     <PackageIconUrl>https://stardustframework.wdfiles.com/local--files/blog:_start/logo_smal.png</PackageIconUrl>

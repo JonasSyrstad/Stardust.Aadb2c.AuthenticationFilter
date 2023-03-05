@@ -70,7 +70,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                     return null;
                 if (string.IsNullOrWhiteSpace(ConfigurationManagerHelper.GetValueOnKey("aadPolicy")))
                     return $"{ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl")}/v2.0/.well-known/openid-configuration";
-                return $"{ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl")}/v2.0/.well-known/openid-configuration?p={B2CGlobalConfiguration.AadPolicy}";
+                return $"{ConfigurationManagerHelper.GetValueOnKey("b2cTenantUrl")}/v2.0/.well-known/openid-configuration";
             }
         }
 
