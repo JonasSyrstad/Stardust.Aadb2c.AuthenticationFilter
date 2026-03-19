@@ -51,14 +51,21 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             try
             {
                 Logger.LogDebug($"Looking for bearer token! {nameof(HandleRemoteAuthenticateAsync)}");
-                var v = Request.Headers["Authorization"].FirstOrDefault();
-                if (v != null && v.Split(' ')[0].Equals("bearer", StringComparison.InvariantCultureIgnoreCase))
+                var value = Request.Headers["Authorization"].FirstOrDefault()?.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (value == null)
                 {
-                    var user = TokenValidator.Validate(v.Split(' ')[1], _provider);
+                    Logger.LogDebug("No bearer token provided");
+                    return Task.FromResult(HandleRequestResult.SkipHandler());
+                }
+                if (value.Length == 2 && value[0].Equals("bearer", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var user = TokenValidator.Validate(value[1], _provider);
                     Context.User = user;
 
                     return Task.FromResult(HandleRequestResult.Success(new AuthenticationTicket(user, Scheme.Name)));
                 }
+
                 Logger.LogDebug("No bearer token provided");
                 return Task.FromResult(HandleRequestResult.SkipHandler());
             }
@@ -74,10 +81,16 @@ namespace Stardust.Aadb2c.AuthenticationFilter
             try
             {
                 Logger.LogDebug($"Looking for bearer token! {nameof(HandleAuthenticateAsync)}");
-                var v = Request.Headers["Authorization"].FirstOrDefault();
-                if (v != null && v.Split(' ')[0].Equals("bearer", StringComparison.InvariantCultureIgnoreCase))
+                var value = Request.Headers["Authorization"].FirstOrDefault()?.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (value == null)
                 {
-                    var user = TokenValidator.Validate(v.Split(' ')[1]);
+                    Logger.LogDebug("No bearer token provided");
+                    return Task.FromResult(AuthenticateResult.NoResult());
+                }
+                if (value.Length == 2 && value[0].Equals("bearer", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var user = TokenValidator.Validate(value[1]);
                     Context.User = user;
 
                     return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(user, Scheme.Name)));
