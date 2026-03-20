@@ -54,7 +54,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
                     var tokenVersion = jwt.Claims.SingleOrDefault(c => c.Type == "ver");
                     logger?.DebugMessage($"token version: {tokenVersion?.Value??"na"}");
                     logger?.DebugMessage($"Issuer: {jwt.Issuer}");
-                    if (B2CGlobalConfiguration.AllowClientCredentialsOverV2 &&  tokenVersion?.Value== "2.0")
+                    if (B2CGlobalConfiguration.AllowClientCredentialsOverV2 &&  ( tokenVersion?.Value== "2.0" || jwt.Claims.SingleOrDefault(c => c.Type == "azp") != null))
                     {
                         logger?.DebugMessage($"Validating client token over V2 tokens {jwt.Claims.SingleOrDefault(c => c.Type == "azp")?.Value}");
                         return TokenValidatorV2.ValidateToken(token, logger);
