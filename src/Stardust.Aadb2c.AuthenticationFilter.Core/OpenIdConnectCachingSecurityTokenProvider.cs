@@ -43,6 +43,12 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
         {
             get { return _caches.Select(p => p.Issuer).ToArray(); }
         }
+
+        public void RetrieveMetadata()
+        {
+            foreach (var cache in _caches)
+                cache.RetrieveMetadata();
+        }
     }
     public interface IOpenIdConnectCachingSecurityTokenProvider
     {
@@ -53,6 +59,8 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
         /// All known security tokens.
         /// </value>
         ICollection<SecurityKey> SecurityTokens { get; }
+
+        void RetrieveMetadata();
     }
 
     public class OpenIdConnectCachingSecurityTokenProvider : IOpenIdConnectCachingSecurityTokenProvider
@@ -124,7 +132,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
             }
         }
 
-        private void RetrieveMetadata()
+        public void RetrieveMetadata()
         {
 
             _synclock.EnterWriteLock();

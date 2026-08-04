@@ -46,7 +46,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
 
         private static TokenValidationParameters ValidationParameters()
         {
-            var issuers = B2CGlobalConfiguration.ValidIssuer.Split(';');
+                        var issuers = B2CGlobalConfiguration.ValidIssuer.Split(';');
             var tokenValidationParameters= new TokenValidationParameters
             {
                 ValidAudiences = Resource.Split(';'),
@@ -59,7 +59,7 @@ namespace Stardust.Aadb2c.AuthenticationFilter.Core
 
         }
 
-        private static readonly IOpenIdConnectCachingSecurityTokenProvider Settings =MetadataEndpoint!=null? (IOpenIdConnectCachingSecurityTokenProvider)new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint):new OpenIdConnectCachingSecurityTokenProviderV2(B2CGlobalConfiguration.AadTenants);
+        public static readonly IOpenIdConnectCachingSecurityTokenProvider Settings =MetadataEndpoint!=null? (IOpenIdConnectCachingSecurityTokenProvider)new OpenIdConnectCachingSecurityTokenProvider(MetadataEndpoint):new OpenIdConnectCachingSecurityTokenProviderV2(B2CGlobalConfiguration.AadTenants);
 
 
         private static string MetadataEndpoint
