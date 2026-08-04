@@ -149,4 +149,25 @@ you can keep all the parameters passed to the swagger in the config file.
     <add key ="swaggerAppName" value="Swagger UI" />
 </appSettings>
 
+```---
+
+# Veracity.OAuth.Tokens.Middleware (Coming Soon)
+
+> **Note:** This package is currently in preview and not yet available for production use. More information and full documentation will be published on [docs.veracity.com](https://docs.veracity.com) when the time is right.
+
+A new unified authentication middleware for Veracity services that supports both **Azure AD B2C** and **Auth0 (IdP V2)** token validation in a single handler. This will be the recommended replacement for `Stardust.Aadb2c.AuthenticationFilter` going forward.
+
+### What's new
+
+- **Dual identity provider support** - Validates both B2C and Auth0 tokens automatically based on the token issuer.
+- **Drop-in migration** - Existing B2C configuration remains unchanged; just add the Auth0/IdP V2 settings.
+- **Security hardened** - RS256-only, HTTPS-enforced OIDC discovery, strict token validation.
+- **Modern .NET** - Targets net8.0, net9.0, and net10.0.
+
+### Preview package
+
 ```
+PM> Install-Package Veracity.OAuth.Tokens.Middleware -Version 0.9.0-pre1
+```
+
+Stay tuned for the stable release and full migration guide on [docs.veracity.com](https://docs.veracity.com).
